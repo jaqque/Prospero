@@ -1,0 +1,156 @@
+# $Id: README 1839 2008-08-01 19:09:26Z djmcgrath $
+
+                                 -------------
+                                 -- Infobot --
+                                 -------------
+
+INTRODUCTION
+	This bot is based upon blootbot, which was a fork of infobot-0.44.2 by
+Kevin Lenzo <lenzo@cs.cmu.edu>, which is now officially rebranded back to
+infobot!  The basis of infobot is still there but _many_ wild features have
+been added.  Along the way, many issues were spotted in the original
+infobot source and fixed in this version. Many new bugs have been added as well.
+Thanks to kevin for bringing infobot in the first place.
+
+
+FEATURES
+	* Additional information stored with factoids. (factinfo)
+	* Wide range of statistics for Bot, Factoids, IRC, Debian
+	  (status, factstats, ircstats, chanstats, cmdstats)
+	* Advanced topic management
+	* Improved factoid search, allowing search by key or value
+	* Freshmeat support (freshmeat.net)
+	* Debian Contents and Packages, search and info
+	* ChanServ/NickServ (freenode) support
+	* WWW-Search (eg: google for BLAH) (NOTE: Currently broken)
+	* Slashdot, Kernel, RSS and Freshmeat auto-update announcements
+	* Units conversion (provided by external "units" program)
+
+
+DESIGN
+	- Modularity. Ability to disable IRC or Factoid support
+	- Funky pseudo Module autoloader support
+	- Modules called via Forker() to avoid blocking
+    - Non blocking logs
+    - Seen data periodicaly flushed for efficiency
+
+
+HISTORY
+	As of 0.99pre1, blootbot supports mysql database in the hope to
+increase performance and to avoid borked over dbm's which occurred when
+the bot crashed (??). The mysql code is far larger (or perhaps twice
+as many functions) than expected even though a few functions were needed
+for DBM due to lack of table deficiencies.
+
+	As of 1.0.0pre1, blootbot takes advantage of Net::IRC. The
+change over was fairly comfortable (95% clean). Just minor problems here
+and there, mostly debugging and getting it right.
+
+	As of 1.0.0RC2, the old style DBM (Berkeley) has been ported
+back. It should work in all but 3 specific (countdown, factstats unreq)
+cases. preliminary pgsql support has been added but someone with pgperl
+knowledge needs to fix it up or at least unify the module with mysql.
+
+	As of 1.5.0, blootbot was rebranded back to infobot.
+
+
+INSTALLATION
+  - Read the included INSTALL file
+
+
+NOTICE
+	Be warned that this bot consumes quite a lot of memory upon start
+up and during usage. Right now, 7.4megs is used for old'ish perl, 8.3megs
+with perl 5.005. fork() is used but don't be alarmed at the memory usage
+as fork(), as I was told, uses COW (copy on write).
+
+	WARNING: enabling wingate support may involve complaints of some
+sort, probably because the telnet connection isn't closed properly.
+However, these people do not realize the potential of open wingates.
+
+	Please beta test it and report bugs as I have not had the time to
+test all modifications properly (and extensively).  Suggestions are
+welcomed.
+
+
+MODIFICATIONS
+	All modifications are that of the blootbot author unless otherwise
+specified, like none.  See 'ChangeLog' for details.  A list of future
+features listed in 'TODO'.
+
+	See 'USAGE' for complete list of commands with description
+(FIXME) and examples (FIXME).  Yes, it is incomplete.  It is better for
+you to find the cookies than for me to hand-feed them to you ;)
+
+	See 'EXAMPLES' for various usage of factoids and "hidden"
+variables.  If you're hardcore, check out 'CommandStubs.pl' and
+'UserExtras.pl' for cool features.
+
+	topic [help]		- Topic help.
+	topic add <topic>	- Append <topic> to the current topic.
+	topic del <#>		- Purge topic ID <#> from current topic.
+	topic list		- List broken down summary of current topic.
+	topic mod s/old/new/	- Modify the topic using regex.
+				- Now supports , and # as delimiters.
+	topic mv <1> <type> <2>	- <type>:
+					before - Move <1> before <2>
+					after  - Move <1> after <2>
+					swap   - Swap <1> and <2>
+	topic shuffle		- Jumble the subtopics.
+
+	topic history		- Show previous channel topics.
+	topic restore <#>	- Restore channel topic to <#> on history
+				  #list.
+
+==> Individual commands: NEW
+	(lobotomy|bequiet)	-- [o] silence the bot.
+	(unlobotomy|benoisy)	-- [o] unsilence the bot.
+
+	set <param> <value>	-- ...
+	unset <param>		-- ...
+
+
+NOTES
+	To administrate/control the bot remotely, this can only be done
+through DCC CHAT. /chat <BOT NICK>.  All commands must be prepended by
+'.' otherwise it is sent to the bot chat net
+
+
+UNTESTED:
+	- user statistics shown by 'seen'.
+	- User Information Services.
+	- new wingate caching/file-read code.
+	- disabling IRC/factoid support code.
+	- PGSql support needs to be more thoroughly tested.
+
+
+CONTRIBUTIONS
+	jCommons, is, netgod, mu and Mercury for attempting to break my
+modifications, aswell as giving suggestions and ideas in the early
+development stages. Bashing of modifications courtesy of larne, irq, lilo
+and \broken.
+
+	mu@freenode for the SAR (=~ s///) and Topic history patch.
+
+	someone emailed me a patch to fix up telnet but I accidently
+deleted the message together with the patch after replying to the guy. I
+hope to get that same guy to re-send me the patch...
+
+	MbM@freenode sent a patch to clean up behaviour of factoids
+(adding, removing, modifying).  Thanks.
+
+
+CONTACT
+	Contributions of a patch, or anything, can be sent to
+<infobot-devel@lists.sourceforge.net>
+
+Some Documentation is on the website. Please see it for details or
+visit: http://infobot.sourceforge.net/
+
+
+IRC
+	If your looking to hang out on IRC, feel free. We can be found
+in the #infobot channel on irc.freenode.net. See you there!
+
+
+# vim:ts=4:sw=4:expandtab:tw=80

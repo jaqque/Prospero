@@ -1,0 +1,158 @@
+=pod
+
+=head1 NAME
+
+infobot.users - User accounts database for infobot
+
+=head1 SYNOPSIS
+
+  # Please edit to your needs.
+  # "local" is used for CLI mode
+  # Passwords can be generated with mkpasswd in linux
+
+  _default
+  --FLAGS		amrt
+  --HOSTS		*!*@*
+
+  local
+  --FLAGS		Aemnorst
+  --HOSTS		local!local@local
+  --PASS		xxfxfIfoJHdYg
+
+  timriker
+  --FLAGS		Aemnorst
+  --HOSTS		*!~timr@TimRiker.active.supporter.pdpc
+  --PASS		xxfxfIfoJHdYg
+
+  xk
+  --FLAGS		emnorst
+  --HOSTS		*!xk@example.com
+  --HOSTS		*!xk@superbox.home.org
+  --PASS		5K/rmJPzwxJhU
+
+=head1 DESCRIPTION
+
+This file controls who has access to use your infobot.
+
+=head1 FIELDS
+
+There are various fields allowed in your file. Whitespace is ignored, and as
+usual, any line starting with a C<#> is treated as a comment.
+
+The first non whitespace/comment line in your file, is the user name for the
+account you are about to define. Take note that a special username called
+C<_default>, is meant to define what everyone who doesnt have an account in this
+file should use for permissions.
+
+Also, the special user name C<local>, is used when you run the bot in B<CLI>
+mode (console only, no B<IRC> connection). As well, the C<local> user requires a
+special hostmask of S<I<local!local@local>>.
+
+Below is a list of the valid options available for each user account.
+
+=over
+
+=item B<--FLAGS>
+
+This field is a list of possible flags that this account has. Think of them as
+similar to irc user modes (although, with different meanings).
+
+Here is a list of the current flags available, and their meanings:
+
+I<Note: Modes flags are case sensitive>
+
+=over
+
+=item *
+
+B<A> - bot administration over /msg (default is only via DCC CHAT)
+
+=item *
+
+B<O> - dynamic ops (as on channel). (automatic +o)
+
+=item *
+
+B<T> - add topics.
+
+=item *
+
+B<a> - ask/request factoid.
+
+=item *
+
+B<m> - modify factoid. (includes renaming)
+
+=item *
+
+B<n> - bot owner, can "reload"
+
+=item *
+
+B<o> - master of bot (automatic +amrt). 
+
+=over
+
+=item *
+
+Can search on factoid strings shorter than 2 chars
+
+=item *
+
+Can tell bot to join new channels
+
+=item *
+
+Can [un]lock factoids
+
+=back
+
+=item *
+
+B<r> - remove factoid.
+
+=item *
+
+B<t> - teach/add factoid.
+
+=item *
+
+B<s> - Bypass +silent on channels
+
+=back
+
+=item B<--HOSTS>
+
+This field is used to specify a hostmask that a user must appear from for the
+bot to consider them to be this specific account definition.
+
+This hostmask takes the form of: I<nick!user@hostname>
+
+I<Note: You can have this field multiple times>
+
+=item B<--PASS>
+
+This field used a C<crypt> formated password, that is used for B<DCC> chats to
+the bot, or if you need to identify yourself to the bot in the event that you
+come from a different host.
+
+You can generate one using the C<mkpasswd> command, available on most systems.
+
+For example:
+
+ infobot@myhost:~$ mkpasswd
+ Password: test
+ GVrl9PMBB0gpw
+
+You can also change your password at anytime by sending the bot a C<chpass>
+command on B<IRC>. 
+
+=back
+
+=head1 BUGS
+
+At some point, it is likely that the C<local> account will be removed and
+implied to have full access.
+
+=cut
+

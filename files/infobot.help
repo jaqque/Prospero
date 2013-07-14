@@ -1,0 +1,510 @@
+# Revised: 20071016
+#  Author: Tim Riker <Tim@Rikers.org>
+###
+
+# Special entry
+main: I learn mainly by observing declarative statements such as "x is at http://www.xxx.com", and then reply when people ask things like "where can i find x?"
+
+action: This is used to override the usual response. "x is <action> does the hokey-pokey". When asked about x, the bot does this "* infobot does the hokey-pokey"
+
+addressing: It is a good idea if I stay in REQUIRE mode so that I won't yell out random crap if I listen in too hard.  Currently there is no way to turn this off on-the-fly. (REQUIRE mode requires me to be addressed by name if I am to respond)
+
+alternation: The || symbol in an entry causes an infobot to choose one of the replies at random. "X is Y||Z" will produce "X is Y" or "X is Z" randomly.
+
+author: oznoid (mailto:lenzo@ri.cmu.edu) is my original author.
+
+babelfish: D: Frontend to babelfish translating service provided by http://babelfish.altavista.com/ Note that utf8 is used for non-ascii characters.
+babelfish: U: x <fromLang> <toLang> <words>
+babelfish: U: translate <fromLang> <toLang> <words>
+babelfish: E: x en de your cars rock
+
+bandel: D: FIXME:
+bandel: U: ## <mask|user>
+bandel: E: ## *!*@owns.org
+bandel: E: ## MoronMan
+
+banadd: D: FIXME:
+banadd: U: ## <mask|user> [chan] [time] [reason]
+banadd: E: ## *!*@owns.org #bots 60 stop flooding.
+banadd: E: ## *!*@*microsoft.com STOOPID
+banadd: E: ## MoronMan
+
+botmail: D: Send someone botmail
+botmail: U: ## {for <who>[:] <message>}|stats|check|read
+botmail: E: ## for infobot: you rock!
+botmail: E: ## stats
+botmail: E: ## check
+botmail: E: ## read
+
+chanadd: D: Join a channel permanently
+chanadd: U: ## #channel
+chanadd: E: ## #botpark
+
+chandel: D: Leave a channel permanently
+chandel: U: ## -#channel
+chandel: E: ## -#botpark
+
+chaninfo: D: Display channel statistics on Op, Ban, Deop, Unban, Part, Join, SignOff, PublicMsg, Kick and Topic
+chaninfo: U: ## [#channel]
+chaninfo: E: ##
+chaninfo: E: ## #botpark
+
+chanset: D: set a variable for a channel
+chanset: U: ## [#chan] [what] [val]
+chanset: E: ## #c +test
+chanset: E: ## #c -test
+chanset: E: ## #c test
+chanset: E: ## #c test 0
+chanset: E: ## #c test testing123
+
+chanunset: D: remove a variable from a channel
+chanunset: U: ## <#chan> [what]
+chanunset: E: ## #c
+chanunset: E: ## #c test
+
+chattr: D: Change flags on a user (see "help flags")
+chattr: U: ## <user> [flags]
+chattr: E: ## bloot +nmo
+chattr: E: ## bloot -ot
+chattr: E: ## bloot
+
+chnick: D: rename a nick (user) entry
+chnick: U: ## [nick] <new-nick>
+chnick: E: ## moron
+chnick: E: ## owner eleet
+
+chpass: D: Change a user's password
+chpass: U: ## [user] <pass>
+chpass: E: ## testing
+chpass: E: ## testing test0R
+
+contents: D: Debian Contents search only (no Packages)
+contents: U: ## <string> [dist]
+contents: E: ## strings.h
+contents: E: ## x11amp potato
+
+cookie: I can feed your appetite with random factoids.
+
+corrections: If I come back with "...but x is at http://xx.xx.xx" or something like that, and you want to change the entry, use "no, x is at http://sdfsdfsdf".  The "No," tells me to supercede the existing value.
+corrections: you can append stuff to a factoid with "also". "x is also at ..."
+
+cpustats: cpustats dumps the bot's cpu usage this session
+
+crypt: It's good that you thought about encryption. I can do it for you.
+crypt: U: ## <salt> <string>
+crypt: E: ## 69 changeme
+crypt: E: ## $1$abcde changeme
+
+cycle: D: Causes me to cycle in the channel it's said, or in the named channel
+cycle: U: ## [channel]
+cycle: E: ##
+cycle: E: ## #botpark
+
+dauthor: D: Find Debian package maintainers, and list the packages they maintain
+dauthor: U: ## <string> [dist]
+dauthor: E: ## Wichert
+dauthor: E: ## Wichert potato
+
+dbugs: D: Show the current count of release critical bugs (latest versions)
+dbugs: U: ##
+
+ddesc: D: Search the Description: lines in Debian packages
+ddesc: U: ## <string> [dist]
+ddesc: E: ## mule
+ddesc: E: ## mule potato
+
+dfind: D: Debian Packages (fallback to Contents) search
+dfind: U: ## <string> [dist]
+dfind: E: ## strings.h
+dfind: E: ## x11amp potato
+
+dict: D: DICT Protocol Client - likely dicts: elements web1913 wn gazetteer jargon foldoc easton hitchcock devils world02 vera
+dict: U: ## [entry num] <query>[/dict]
+dict: E: ## linux
+dict: E: ## 33 set/wn
+
+dns: D: Query DNS
+dns: U: ## <host|ip>
+dns: E: ## debian.org
+dns: E: ## 3.1.33.7
+
+do: D: operator command to do things in a channel
+do: U: ## <chan> <what>
+
+dollar variables: D: To be used in factoids
+dollar variables: $Fdunno      - ...
+dollar variables: $Fquestion   - ...
+dollar variables: $Fupdate     - ...
+dollar variables: $channel     - channel from which the factoid was requested
+dollar variables: $date        - current date (GMT)
+dollar variables: $day         - day of week (full name, locale)
+dollar variables: $factoids    - factoid count
+dollar variables: $host        - hostname of factoid requester
+dollar variables: $ident       - bot nick
+dollar variables: $lastspeaker - ...
+dollar variables: $memusage    - ...
+dollar variables: $rand        - random number, also $rand100.2
+dollar variables: $randnick    - random nick
+dollar variables: $startTime   - start time
+dollar variables: $time        - current time (GMT)
+dollar variables: $uptime      - ...
+dollar variables: $user        - username of factoid requester
+dollar variables: $who         - nick of factoid requester
+
+dstats: D: Show basic stats on the current size of the Debian distros
+dstats: U: ## [dist]
+dstats: E: ##
+dstats: E: ## potato
+
+factinfo: D: View statistical information about a particular factoid.
+factinfo: U: ## <factoid>
+factinfo: E: ## test
+
+factstats: D: Display statistical data (max of 15) about factoids.
+factstats: U: ## <type>
+factstats: == author    -- top author of factoids.
+factstats: == deadredir -- ??
+factstats: == duplicate -- duplicate factoids.
+factstats: == listfix   -- ??
+factstats: == locked    -- locked factoids.
+factstats: == new       -- recent addition of factoids.
+factstats: == nullfactoids -- ??
+factstats: == partdupe  -- initial partial duplicate factoids.
+factstats: == profanity -- possibly offensive factoids.
+factstats: == redir     -- redirection in factoids.
+factstats: == reqrate   -- ??
+factstats: == requested -- most requested factoids.
+factstats: == requesters -- most requested factoids.
+factstats: == seefix    -- ??
+factstats: == toolong   -- factoid {key|value} exceeding specified length.
+factstats: == tooshort  -- factoid {key|value} shorter than specified length.
+factstats: == total     -- ??
+factstats: == unrequest -- unrequested factoids.
+factstats: == vandalism -- ??
+factstats: E: ## new
+
+flags: D: Flags for chattr command
+flags: D: "A" - bot administration over /msg (default is only via DCC CHAT)
+flags: D: "O" - dynamic ops (as on channel). (automatic +o)
+flags: D: "T" - add topics.
+flags: D: "a" - ask/request factoid.
+flags: D: "m" - modify all factoids. (includes renaming)
+flags: D: "M" - modify own factoids. (includes renaming)
+flags: D: "n" - bot owner, can "reload"
+flags: D: "o" - master of bot (automatic +amrt)
+flags: D:        - can search on factoid strings shorter than 2 chars
+flags: D:        - can tell bot to join new channels
+flags: D:        - can [un]lock factoids
+flags: D: "r" - remove factoid.
+flags: D: "t" - teach/add factoid.
+flags: D: "s" - Bypass +silent on channels
+
+forget: If I have an old/redundant factoid x, "forget x" will cause me to erase it.
+
+freshmeat: D: Frontend to www.freshmeat.net
+freshmeat: U: ## <query>
+freshmeat: E: ## infobot
+
+hex: D: Convert ascii to hex
+hex: U: ## <string>
+hex: E: ## carrot
+
+hex2ip: D: Convert Hex idents for some gateways to an IP address
+hex2ip: U: ## <8 char hex value>
+hex2ip: E: ## AabBcC12
+
+hostadd: D: admin command to list or add hostmasks to a user account
+hostadd: U: ## [user] [<mask>]
+hostadd: E: ## owner
+hostadd: E: ## *!*@owns.org
+hostadd: E: ## owner leet!leet@*.heh.org
+
+hostdel: D: admin command to remove hostmask from a user account
+hostdel: U: ## [user] <mask>
+hostdel: E: ## *!*@owns.org
+hostdel: E: ## owner leet!leet@*.heh.org
+
+httpdtype: D: Get httpd server software version / configuration
+httpdtype: U: ## <hostname>
+httpdtype: E: ## example.com
+
+ignore: D: ignore list management
+ignore: E: ## [mask chan expire comment]
+ignore: E: addignore guu!*@*
+
+ircstats: ircstats dumps some status information on the bot's IRC connection
+
+join: U: ## <#chan> [key]
+join: E: ## #botpark
+join: E: ## #botpark rules
+
+karma: Karma is a community rating system.  Use "X++" to increase the karma, or "X--" to decrease it.  Ask for ratings using "karma for X?"
+
+kernel: D: Frontend to linux.kernel.org's finger response.
+kernel: U: ##
+
+kick: U: ## <nick> [#chan] [message]
+kick: E: ## oznoid
+kick: E: ## larne #botpark
+kick: E: ## john #foo go away!
+
+lart: D: Luser Attitude Readjustment Tool
+lart: U: ## [#chan] <who>
+lart: E: ## lenzo infobot's bugginess
+lart: E: ## #perl everyone perl \=\= lamerville
+
+lc: D: lower case a given string
+lc: U: ## <string>
+lc: E: ## When will infobot achieve world domination?
+
+listauth: D: Search the factoid extension db by creator
+listauth: U: ## <search>
+listauth: E: ## xk
+
+listkeys: D: Search the factoid database by key (factoid)
+listkeys: U: ## <regex>
+listkeys: E: ## infobot
+
+listvalues: D: Search the factoid database by value (description)
+listvalues: U: ## <regex>
+listvalues: E: ## infobot
+
+literal: used to get a raw factoid contents. Use _default to ignore factoidSearch path.
+literal: U: ## [_default|prefix] <factoid>
+literal: E: ## infobot
+
+lobotomy: I can be given a lobotomy ([o] is required) if people start to abuse me.  To bring me back to life, give me an unlobotomy
+
+lock: D: Factoid locking to prevent removal by others
+lock: U: ## <factoid>
+lock: E: ## abuse
+lock: N: By default, only registered "ops" on the bots or factoids matching the user's nick are able to lock factoids.
+lock: N: Requires factoid extension (extra) support enabled.
+
+math: D: math expresions can be evaluated. This uses Perl syntax.
+math: E: 1+1
+math: + - add
+math: - - subtract
+math: * - multiply
+math: / - division
+math: ** - to the power
+math: pi - pi
+math: & - and
+math: | = or
+math: ^ - xor
+
+md5: D: calculates the md5sum of a given string
+md5: U: ## <string>
+md5: E: ## When will infobot achieve world domination?
+
+mode: set modes for a channel
+mode: U: ## <#chan> <mode>
+mode: E: ## #botpark +t
+mode: E: ## #botpark -i
+
+news: D: News functions
+news: U: ## [chan] <add,del,mod,set,latest,read,help>
+
+news add: D: Add news items
+news add: U: news [chan] add <title>
+news add: E: news add This is a test
+news add: see _news set Text_ aswell
+
+news set: D: Set stuff for news item
+news set: U: news [chan] set <item> <what> [value]
+news set:    valid <what>: Expire, Text
+news set: E: news set 1 Text ok, this works
+news set: E: news set test Text and this is a test
+news set: E: news set test Text
+
+news set expire: D: Set expire for news item
+news set expire: U: news [chan] expire <what> <value>
+news set expire: value can be: Xd Xh Xm Xs
+news set expire: value can be: never
+news set expire: news expire 1 3days
+news set expire: news expire 2 +20d
+news set expire: news expire Test 30d 20h 10m 5s
+news set expire: news expire TEST never
+
+news del: D: Delete news item (requires +o or be author)
+news del: U: news [chan] del <item>
+news del: E: news del 1
+news del: E: news del test
+
+news mod: D: Modify a news item (todo: modify Text aswell)
+news mod: E: news [chan] mod <item> s/<from>/<to>/[g]
+news mod: E: news mod 1 s/test/Test/
+news mod: E: news mod test s/test/Test/g
+
+nickometer: D: Measures the lame-ness of a nick or channel
+nickometer: U: ## {nick,channel}
+nickometer: E: ## unknown_lamer
+nickometer: E: ## #botpark
+
+onjoin: D: get/set OnJoin message (needs chan option +OnJoin)
+onjoin: U: ## [#chan|_default] [-]<nick> [message]
+onjoin: E: ## infobot Hey! It's another infobot!
+
+ord: D: Convert ascii to decimal
+ord: U: ## <single character>
+ord: E: ## c
+
+page: D: Send someone a pager message
+page: U: ## <who> <message>
+page: E: ## infobot you rock!
+page: NOTE: this uses the "<who>'s pager" factoids for the From: and To: addresses of the format "example's pager" is "mailto:me@example.com"
+
+part: D: Leave a channel (DCC only)
+part: U: ## <#channel>
+part: E: ## #botpark
+part: NOTE: /kick is an alternative
+
+piglatin: D: translates english text into piglatin
+piglatin: U: ## <string>
+piglatin: E: ## When will infobot achieve world domination?
+
+quote: D: Frontend to yahoo's online stock market share listing
+quote: U: ## <query...>
+quote: E: ## RHAT,MSFT
+
+redirection: If a factoid x contains simply "<reply> see y", then when asked for x, I will deliver factoidor command result y instead.
+
+rename: D: Factoid renaming
+rename: U: ## 'from' 'to'
+rename: E: ## 'infobot' 'infobot'
+
+reply: There is a special tag, <reply>, that is used to override the usual response.  Usually, a response is "X is Y", but it can be made "Y" by making the entry "X is <reply> Y".
+
+reverse: D: reverses a given string
+reverse: U: ## <string>
+reverse: E: ## When will infobot achieve world domination?
+
+rot13: D: ROT13's a given string
+rot13: U: ## <string>
+rot13: E: ## guvf vf n ynzr rknzcyr
+
+say: D: operator command to say things in a channel
+say: U: ## <chan> <what>
+
+scramble: D: scrambles a given string
+scramble: U: ## <string>
+scramble: E: ## When will infobot achieve world domination?
+
+search: U: ## <engine> for <string>
+search: E: ## google for infobot
+
+seen: D: Report last seen time for somebody
+seen: U: ## <nick>
+seen: E: ## infobot
+
+slashdot: D: News for nerds, Stuff that matters. [tm] (shows the headlines)
+slashdot: U: ##
+
+spell: You've guessed it right, I'm a spell checker. Give me any word and I can confirm whether it's good or bad.
+
+status: status dumps general status information
+
+tell: D: Tell someone about a factoid or command
+tell: U: ## <who> -?about <what>
+tell: E: ## me about infobot
+tell: E: ## someone -about testing
+
+topic add: D: Add your own topic
+topic add: U: ## <topic>
+topic add: E: ## This is a test
+
+topic del: D: Delete one or two subtopics
+topic del: U: ## <#>
+topic del: E: ## 1
+topic del: E: ## 1-3,5
+topic del: E: ## last
+
+topic mod: D: Search and replace strings in the topic
+topic mod: U: ## <REGEX>
+topic mod: E: ## s/test/TEST/
+topic mod: E: ## s#msg test#/msg test#g
+
+topic mv: D: Move subtopics around.
+topic mv: U: ## <#> <before|after|swap> <#>
+topic mv: E: ## 1 after 2
+topic mv: E: ## first before last
+
+topic restore: D: Restores the topic to an earlier version
+topic restore: U: ## <#>
+topic restore: E: ## 3
+
+topic: Usage for 'topic [#chan] <params>':
+topic:   ---------------- __Subtopic__:
+topic:   add <TOPIC>    - Append <TOPIC> to topic.
+topic:   del <#>        - Remove subtopic <#> from topic.
+topic:   list           - Display subtopics.
+topic:   mod s/old/new/ - Search and replace topic.
+topic:   mv <ARGS>      - 'topic mv'.
+topic:   shuffle        - Randomly organize subtopics.
+topic:   ---------------- __Topic__
+topic:   history        - Show previous topics.
+topic:   restore <#>    - Restore topic to <#>.
+topic:   rehash         - Rehash changes to topic.
+topic:   info           - Who and time info.
+topic:   ---------------- __Misc__
+topic:   about          - Read the file :)
+topic:   help           - This screen.
+
+topic: NOTE: #chan arg is only required if command is sent over private message to nick, otherwise it is not needed if sent to the channel.
+topic: NOTE: commands can be preceeded? with '-' in order not to enforce changes to topic.
+topic: End of help.
+
+uc: D: upper case a given string
+uc: U: ## <string>
+uc: E: ## When will infobot achieve world domination?
+
+unforget: If a factoid has been forgotten, "unforget x" will cause me to unerase it.
+
+unlobotomy: Not possible in real life, an unlobotomy will bring me back to life in the case of a lobotomy.
+
+unlock: D: Factoid unlocking to allow removal by others.
+unlock: U: ## <factoid>
+unlock: E: ## abuse
+
+upsidedown: D: display a string in pseudo upside down unicode text
+upsidedown: U: ## <string>
+upsidedown: E: ## When will infobot achieve world domination?
+
+uptime: D: Show the current uptime, and the top 3 uptimes recorded
+uptime: U: ##
+
+useradd: D: Administrative command to add new user to the .users file
+useradd: U: ## <user> <mask>
+useradd: E: ## SomeAccount SomeAccount!someguy@example.com
+
+userdel: D: Administrative command to remove a user from the .users file
+userdel: U: ## <user>
+userdel: E: ## SomeAccount
+
+verstats: D: Commnd to CTCP VERSION the specified channel for client statistics
+verstats: U: ## <channel>
+verstats: E: ## #infobot
+verstats: E: < infobot> IRC Client versions for #infobot (2): unknown/cloak - 3 (75%) ;; irssi - 1 (25%).
+
+wantnick: If someone's taken my nick (I hope not) and I'm using some temporary nick, I can change back to my original nick if it's not taken (again).
+
+whois: D: List available information for an account on the bot
+whois: U: ## <account>
+whois: E: ## SomeAccount
+
+wikipedia: D: Frontend to the Wikipedia at http://www.wikipedia.org/wiki/ Note that utf8 is used for non-ascii characters.
+wikipedia: U: ## <topic>
+wikipedia: U: wiki <topic>
+wikipedia: E: wiki irc
+
+wtf: D: Interface to the BSD wtf command
+wtf: U: ## <abbreviation>
+wtf: E: ## iirc
+
+rssfeeds: D: rssfeeds is used to control the RSS Feed tracking module
+rssfeeds: U: rssfeeds [command]
+rssfeeds: E: rssfeeds flush
+rssfeeds: D: flush - Will erase the cache file. (Must be chattr +o)
+rssfeeds: D: update - Force a manual update of the feeds. (Must be chattr +o)
+
+# vim:ts=4:sw=4:expandtab:tw=80

@@ -1,0 +1,35 @@
+# $Id: FAQ 1839 2008-08-01 19:09:26Z djmcgrath $
+
+Q: The bot exits after I run 'factstats testing' or 'kernel' or anything
+   that uses fork(). Is this a bug in the bot?
+
+A: No, this is not a bug in the bot but rather Net::IRC.  A cheap hack is
+   to edit /usr/lib/perl5/Net/IRC/Connection.pm, search for DESTROY, and
+   comment out '$self->quit();'
+
+
+Q: I notice that, in the bot logs, the bot attempts to close all current
+   DCC CHAT connections whenever a forked process ends. Why is this?
+
+A: Yet another bug in Net::IRC. Currently, DCC CHAT connections are not
+   closed because there is an endless-loop bug when it is done.
+
+
+Q: I executed 'scripts/setup_user.pl' but it said 'connection refused to
+   localhost'
+
+A: Looks like a bug in the installation of mysqld. You need to reload or
+   restart the daemon.
+	reload => 'mysqladmin -u root -p reload'
+	restart => '/etc/init.d/mysql stop; /etc/init.d/mysql start'
+
+Q: How do I get my bot to automatically ask for OP's from chanserv?
+
+A: By default, the "chanServCheck" option is off in _default. You can
+   set it on a per channel basis or as default. For example, the following
+   commands will enable asking for OP by default, except on #notmychannel
+
+	chanset _default chanServCheck 1
+	chanset #notmychannel chanServCheck 0
+
+# vim:ts=4:sw=4:expandtab:tw=80

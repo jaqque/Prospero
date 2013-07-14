@@ -1,0 +1,21 @@
+#!/usr/bin/perl
+
+$| = 1;
+
+print "plaintext> ";
+while (<>) {
+    chomp;
+    $result = &mkpasswd($_);
+    print "\t$result\n";
+    print "plaintext> ";
+}
+
+sub mkpasswd {
+    my $what = $_[0];
+    my $salt = chr( 65 + rand(27) ) . chr( 65 + rand(27) );
+    $salt =~ s/\W/x/g;
+
+    return crypt( $what, $salt );
+}
+
+# vim:ts=4:sw=4:expandtab:tw=80

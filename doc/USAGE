@@ -1,0 +1,782 @@
+# $Id: USAGE 1839 2008-08-01 19:09:26Z djmcgrath $
+
+############
+# EXAMPLES #
+############
+
+DCC CHAT:
+.+chan #chan
+.chanset #chan +autojoin
+.chanset +autojoin
+.chanunset -autojoin
+.chanset -autojoin
+
+for list of configuration options, run:
+        ./scripts/findparam.pl
+
+
+=====
+<me> infobot: hex2ip aaBBcD12
+<infobot> me: AABBCD12 = 170.187.205.18 
+
+<me> infobot: test is testing
+<infobot> me: okay
+<me> infobot: testing?
+<infobot> testing is testing
+
+<me> infobot: tests is <REPLY> testing
+<infobot> me: okay
+<me> infobot: tests?
+<infobot> testing
+
+<me> infobot: cough is <ACTION> coughs
+<infobot> me: okay
+<me> infobot: cough
+* infobot/#infobot coughs
+
+<me> infobot: test is <REPLY> What's (one|two|three|four|five|six)
+	times (seven|eight|nine|ten|eleven|twelve)?
+<infobot> okay, me
+<me> infobot: test
+<infobot> What's four times nine?
+<me> infobot: test?
+<infobot> What's six times ten?
+
+<me> infobot: op me is <ACTION> Mode change "+o $nick" on channel
+	$channel by $ident
+<infobot> me: okay
+<me> infobot: op me
+* infobot/#debian-bots Mode change "+o me" on channel #infobot by
+	infobot
+
+<me> infobot: no who am i is <REPLY> You are $nick!$user@$host on
+	$channel.
+<infobot> okay, me
+<me> infobot: who am i
+<infobot> You are me!me@home.org on #infobot.
+
+<me> infobot: who last spoke is <REPLY> To my knowledge, $lastspeaker
+	was the last to say something worthwhile.
+<infobot> me: okay
+<me> infobot: who last spoke
+<infobot> To my knowledge, me was the last to say something worthwhile.
+
+<me> infobot: percentage is <REPLY> you are $randpercentage% lame
+<infobot> me: okay
+<me> infobot: percentage
+<infobot> you are 79% lame
+
+<me> infobot: slap $1 is <action> slaps $1
+<infobot> me: okay, me
+<me> infobot: slap Bob
+ * infobot slaps Bob
+<me> infobot: forget cmd: slap (.*?)
+<infobot> me: i forgot cmd: slap (.*?)
+
+
+#################
+# USER COMMANDS #
+#################
+
+Command: 4op
+=============
+Description:
+	...
+
+Usage: REQUIRES +o flag.
+	4op ...
+
+Example:
+	...
+
+
+Command: dumpvars
+=============
+Description:
+	...
+
+Usage: REQUIRES +o flag.
+	dumpvars ...
+
+Example:
+	...
+
+
+Command: kick
+=============
+Description:
+	...
+
+Usage: REQUIRES +o flag.
+	kick ...
+
+Example:
+	...
+
+
+Command: ignore
+=============
+Description:
+	...
+
+Usage: REQUIRES +o flag.
+	ignore ...
+
+Example:
+	...
+
+
+Command: ignorelist
+=============
+Description:
+	...
+
+Usage: REQUIRES +o flag.
+	ignorelist ...
+
+Example:
+	...
+
+
+Command: unignore
+=============
+Description:
+	...
+
+Usage: REQUIRES +o flag.
+	unignore ...
+
+Example:
+	...
+
+
+Command: clear ignorelist
+=============
+Description:
+	...
+
+Usage: REQUIRES +o flag.
+	clear ignorelist ...
+
+Example:
+	...
+
+
+Command: lobotomy
+=============
+Description:
+	...
+
+Usage: REQUIRES +o flag.
+	lobotomy ...
+
+Example:
+	...
+
+
+Command: unlobotomy
+=============
+Description:
+	...
+
+Usage:
+	unlobotomy ...
+
+Example:
+	...
+
+
+Command: op
+=============
+Description:
+	...
+
+Usage: REQUIRES +o flag.
+	op ...
+
+Example:
+	...
+
+
+Command: say
+=============
+Description:
+	...
+
+Usage: REQUIRES +o flag.
+	say ...
+
+Example:
+	...
+
+
+Command: die
+=============
+Description:
+	...
+
+Usage: REQUIRES +n flag.
+	die ...
+
+Example:
+	...
+
+
+Command: jump
+=============
+Description:
+	...
+
+Usage: REQUIRES +n flag.
+	jump ...
+
+Example:
+	...
+
+
+Command: rehash
+=============
+Description:
+	...
+
+Usage: REQUIRES +n flag.
+	rehash ...
+
+Example:
+	...
+
+
+Command: set
+=============
+Description:
+	...
+
+Usage: REQUIRES +n flag.
+	set ...
+
+Example:
+	...
+
+
+Command: unset
+=============
+Description:
+	...
+
+Usage: REQUIRES +n flag.
+	unset ...
+
+Example:
+	...
+
+
+Command: chanstats
+=============
+Description:
+	Channel statistics is gathered while the bot is operation in those
+	channels it is located. They include: join, part, kick, ban, and
+	countless others.
+
+Usage:
+	chanstats [#channel]
+
+Example:
+	> infobot: chanstats
+	<infobot> i am on 2 channels: #infobot #debian
+	<infobot> i've cached 5 users distributed over 2 channels.	
+
+	> infobot: chanstats #infobot
+	<infobot> On #infobot, there have been 1 Join, 1 Op and 20
+		PublicMsgs.
+	<infobot> At the moment, 3 Opped and 3 Total.
+
+
+Command: cmdstats
+=============
+Description:
+	...
+
+Usage:
+	cmdstats ...
+
+Example:
+	...
+
+
+Command: crypt
+=============
+Description:
+	...
+
+Usage:
+	crypt ...
+
+Example:
+	...
+
+
+Command: factinfo
+=============
+Description:
+	...
+
+Usage:
+	factinfo ...
+
+Example:
+	...
+
+
+Command: factstats
+=============
+Description:
+	...
+
+Usage:
+	factstats ...
+
+Example:
+	...
+
+
+Command: karma
+=============
+Description:
+	...
+
+Usage:
+	karma ...
+
+Example:
+	...
+
+
+Command: spell
+=============
+Description:
+	...
+
+Usage:
+	spell ...
+
+Example:
+	...
+
+
+Command: nslookup
+=============
+Description:
+	...
+
+Usage:
+	nslookup ...
+
+Example:
+	...
+
+
+Command: part
+=============
+Description:
+	...
+
+Usage:
+	part ...
+
+Example:
+	...
+
+
+Command: rot13
+=============
+Description:
+	...
+
+Usage:
+	rot13 ...
+
+Example:
+	...
+
+
+Command: wantNick
+=============
+Description:
+	...
+
+Usage:
+	wantNick ...
+
+Example:
+	...
+
+
+Command: join
+=============
+Description:
+	The bot can be commanded to join a channel if it is not already on
+	there in the case of a kick/ban, invite only or invalid key to
+	name a few typical case scenarios.
+
+	The channels which the bot can join is governed by the
+	configuration parameter labelled 'join_channels'. However, this
+	is ignored for those users with the +o flag in the user table.
+
+Usage:
+	join <#channel>[,key]
+
+Example:
+	> infobot: join #infobot
+	[infobot] joining #infobot
+	*** join/#debian infobot (xk@router.home.org)
+	> infobot: join #infobot
+	[infobot] I'm already on #infobot...
+
+
+
+                    ======================================
+                               MODULE COMMANDS
+                    ======================================
+
+Command: babelfish
+=============
+Description:
+	...
+
+Usage:
+	x from [language]: phrase
+
+Example:
+	...
+
+
+Command: debian package
+=============
+Description:
+	...
+
+Usage:
+	[] ...
+
+Example:
+	...
+
+
+Command: dict
+=============
+Description:
+	...
+
+Usage:
+	dict ...
+
+Example:
+	...
+
+
+Command: freshmeat
+=============
+Description:
+	...
+
+Usage:
+	freshmeat ...
+
+Example:
+	...
+
+
+Command: google
+=============
+Description:
+	...
+
+Usage:
+	google ...
+
+Example: DOES NOT WORK YET(??)
+	...
+
+
+Command: insult
+=============
+Description:
+	...
+
+Usage:
+	insult ...
+
+Example:
+	...
+
+
+Command: kernel
+=============
+Description:
+	...
+
+Usage:
+	kernel ...
+
+Example:
+	...
+
+
+Command: lart
+=============
+Description:
+	...
+
+Usage:
+	lart ...
+
+Example:
+	...
+
+
+Command: list{keys|vals}
+=============
+Description:
+	...
+
+Usage:
+	list{keys|vals} ...
+
+Example:
+	...
+
+
+Command: nickometer
+=============
+Description:
+	...
+
+Usage:
+	nickometer ...
+
+Example:
+	...
+
+
+Command: quotes
+=============
+Description:
+	...
+
+Usage:
+	quotes ...
+
+Example:
+	...
+
+
+Command: rootwarn
+=============
+Description:
+	...
+
+Usage:
+	rootwarn ...
+
+Example:
+	...
+
+
+Command: seen
+=============
+Description:
+	...
+
+Usage:
+	seen ...
+
+Example:
+	...
+
+
+Command: listauth
+=============
+Description:
+	...
+
+Usage:
+	listauth ...
+
+Example:
+	...
+
+
+Command: slashdot
+=============
+Description:
+	...
+
+Usage:
+	slashdot ...
+
+Example:
+	...
+
+
+Command: debian contents
+=============
+Description:
+	...
+
+Usage:
+	debian ...
+
+Example:
+	...
+
+
+Command: topic
+=============
+Description:
+	...
+
+Usage:
+	topic ...
+
+Example:
+	...
+
+
+Command: countdown
+=============
+Description:
+	...
+
+Usage:
+	countdown ...
+
+Example:
+	...
+
+
+Command: uptime
+=============
+Description:
+	...
+
+Usage:
+	uptime ...
+
+Example:
+	...
+
+
+Command: weather
+=============
+Description:
+	...
+
+Usage:
+	weather ...
+
+Example: DOES NOT WORK
+	...
+
+
+Command: whatis
+=============
+Description:
+	...
+
+Usage:
+	whatis ...
+
+Example: DOES NOT WORK
+	...
+
+
+
+##################################
+# MISCELLANEOUS/FACTOID COMMANDS #
+##################################
+
+Command: forget
+=============
+Description:
+	...
+
+Usage:
+	forget ...
+
+Example:
+	...
+
+
+Command: {un|}lock
+=============
+Description:
+	...
+
+Usage:
+	{un|}lock ...
+
+Example:
+	...
+
+
+Command: rename
+=============
+Description:
+	...
+
+Usage:
+	rename ...
+
+Example:
+	...
+
+
+Command: substitution
+=============
+Description:
+	...
+
+Usage:
+	$factoid =~ s/from/to/
+	$factoid =~ s#te/st/#test#g
+
+Example:
+	...
+
+
+Command: karma set
+=============
+Description:
+	...
+
+Usage:
+	$nick++
+	$nick--
+
+Example:
+	infobot++
+	infobot--
+
+
+Command: maths
+=============
+Description:
+	...
+
+Usage:
+	2 + 2
+
+Example:
+	...
+
+
+Command: tell
+=============
+Description:
+	...
+
+Usage:
+	tell <nick> about <factoid>
+
+Example:
+	...

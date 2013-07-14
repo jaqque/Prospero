@@ -1,0 +1,71 @@
+Other TODO items may be listed on sourceforge. Please access it from the
+website or this link:
+
+    http://sourceforge.net/tracker/?group_id=2241
+
+
+TODO:
+	- remind - like this and others: http://jibble.org/reminderbot/
+	- kill SHM and and move to a pipe
+	- add CIA like support - http://cia.navi.cx/
+	- add pastebot like support - http://sial.org/pbot/
+	- move nicks/server into sql table
+	- make channel flags be server/channel flags
+	- move channel flags to sql table, include initial state
+	- move praise from infobot.lang to "praise:<something>" in factoids?
+	- move lart from infobot.lang to "lart:<something>" in factoids?
+	- debian BTS frontend "bugs"
+	- !country
+	- !dinstall
+	- support DCC SEND of factoid (listkeys/listvals) that matched.
+	- news: show total requested count, users "registered", users
+	  "ignored"
+	- add notes about news redesign to accomodate individual items
+	  read - need to add id's to each item too.
+	- bind DCC CHAT service to port.
+		- man perlipc, search for service.
+		- do forking aswell.
+	- debian: "find -2.4.1" does not work but 2.4.1 does?
+		- $debug var needed.
+	- check if debian downloading files are proper.
+	- verbose: say why config option was enabled/enabled.
+	- registered flags for users/channels
+		- end of DynaConfig.pl
+		- use in UserDCC.. warn if value is not in list.
+		- add &checkSet() or &_chanset();
+	- attempt to move userDCC to hooks.
+		- need to modify parseCmdHooks for user flags?
+	- create a .csv import/export program
+	- make IRC/Schedulers.pl work 100%.
+		- intervals must be multiple of the smallest one otherwise
+		  auto-fixed.
+		- make intervals chan-specific
+			- need to store info in $sched{$what}{$chan} =
+			time(); when last run or next run?
+	- <greycat> ~country ua
+	  <irq_w> xk: add it :) and my imdb feature :)
+	  <greycat> xk: and ~bugs :)	
+    - "HACKING" text file, documentation of where things start,
+	  what "core" or reuseable functions are used and what for.
+	- web interface
+	- on join message - customizeable, option.
+		- addon to UserInfo but for channels?
+	- ^B's are removed (HOW?) from factoids.
+	- asking questions.... make more guesses
+	- throttling of "help topic": push-pull system of &msg().
+	- use autoloader properly.
+		- Module::<BLAH>::<CMD>
+		- make a global autoloader.
+	- support notification of author of deleted factoids,
+	- flag to hide owner of factoid.
+	- table data for DCC CHAT or misc table.
+	- dynamic user//configuration file upgrade:
+		- finer granuality(sp) of userlist/ignore file
+	- <el_gore> apt, find netconfig -- merge similar files.
+		- and same files(1 per package) for multiple packages.
+		- merge partial similar paths together.
+		- do some test cases to confirm code actually works as
+		  proposed.
+
+
+# vim:ts=4:sw=4:expandtab:tw=80

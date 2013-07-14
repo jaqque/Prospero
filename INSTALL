@@ -1,0 +1,163 @@
+                           --------------------------
+                           -- General Installation --
+                           --------------------------
+
+This file contains some general guidelines for installing infobot on your
+system. At this point it is very basic, but should hopefully clear up some of
+your confusion.
+
+Configuration:
+
+    - Copy files/sample/* to files/
+
+    - Edit files/infobot.config, modify to taste.
+    - Edit files/infobot.servers to modify list of IRC servers to connect.
+    - Edit files/infobot.chan to set which channels to join.
+
+Required Perl modules:
+
+    - Net::IRC perl module
+        - Debian: (apt-get install libnet-irc-perl)
+    - WWW::Search
+        - Debian: (apt-get install libwww-search-perl)
+    - LWP
+        - Debian: (apt-get install libwww-perl)
+    - HTML::Parser
+        - Debian: (apt-get install libhtml-parser-perl)
+    - XML::Feed
+        - Debian: (apt-get install libxml-feed-perl)
+
+Choose your database:
+	- MySQL, read the section MySQL below
+	- SQLite or SQLite2, read the section SQLite below
+	- PgSQL, read the section PostgreSQL below
+
+NOTE: There are "bugs" in the perl modules.  Read the section "Patches" below, on how to fix.
+
+Finally, start your bot by changing to the base dir and type:
+
+    ./infobot
+
+
+
+                                ----------------
+                                -- PostgreSQL --
+                                ----------------
+
+- Debian: (apt-get install postgresql)
+- Debian: (apt-get install libpg-perl)
+
+
+As of now, infobot has full pgsql support. It seems to be working 100%, but it
+assumes that you have precreated the database and user for now. As long as you
+already created the database and user and stored this info in the
+infobot.config, then the tables will automatically be created on startup. Until
+I get setup.pl fixed, run the following commands as root (or postgres if root
+doesnt have permission to create users/db's):
+
+    > createuser --no-adduser --no-createdb --pwprompt --encrypted <user>
+    > createdb --owner=<user> <dbname> [<description>]
+
+Dont forget to replace <user> and so forth with actual values you intend to use,
+and dont include the <>'s ;) If you run these commands, you should get a user
+with an encrypted password that cannot create new db's or user's (as it should
+be!), and the user will own the newly created database <dbname>. Congrats!
+
+If everything went fine, you should have everything infobot needs to use pgsql.
+Next simply cd to the base directory you installed the bot to and type:
+
+    ./infobot
+
+
+Thats it! Everything the bot needs should be automatically created when it loads
+for the first time.
+
+In the future I will try to get around to editing the setup.pl file to ask the
+same questions it does for mysql (your root password etc) so that you can skip
+manually creating the database/user. But for now, this should be just fine for
+most of you techies out there.
+
+
+
+
+                                  -----------
+                                  -- MySQL --
+                                  -----------
+
+- Install a MySQL server and the DBI Perl modules.
+    - Debian: (apt-get install mysql-server libdbd-mysql-perl)
+
+- Run 'mysqladmin -u root -p create <DB NAME>'
+    Where <DB NAME> is the same as specified in infobot.config.
+
+- Run 'setup/setup.pl'
+    FIXME: This script is horribly broken! Do NOT use it! The bot will
+    automatically create the tables when it starts. You just need to ensure that
+    the database and the login information are correct, and start the bot.
+
+Possible problems
+-----------------
+    - if connection to localhost is (short) refused, run
+	    '/etc/init.d/mysql stop'
+	    '/etc/init.d/mysql start'
+    - if connection for user is refused, reload grant tables with
+	    'mysqladmin -u root -p reload'
+
+* [OPTIONAL]
+    - run 'scripts/dbm2mysql.pl old-db' to convert dbm database file
+    to mysql.
+
+
+ADDITIONAL NOTES
+----------------
+You can add a new user manually by connecting to MySQL and performing these
+commands:
+
+  $ mysql -u root -p
+
+  mysql> CREATE DATABASE infobot;
+  mysql> GRANT USAGE ON *.* TO 'user'@'localhost' IDENTIFIED BY 'yourpassword';
+  mysql> GRANT ALL PRIVILEGES ON infobot.* TO 'user'@'localhost';
+
+FULL FACTOID DATABASE
+---------------------
+You can get the data from the MySQL database that the apt bot uses on
+#debian at freenode (irc.freenode.net), at:
+
+    http://lain.cheme.cmu.edu/~apt/infobot/apt.sql.bz2
+
+
+
+
+                                  ------------
+                                  -- SQLite --
+                                  ------------
+
+SQLite is a C library that implements an embeddable SQL database engine.
+Programs that link with the SQLite library can have SQL database access without
+running a separate RDBMS process. The distribution comes with a standalone
+command-line access program (sqlite) that can be used to administer an SQLite
+database and which serves as an example of how to use the SQLite library.
+
+infobot will create a file called <DBname>.sqlite and populate the tables for
+you if they do not already exist.
+
+- Install SQLite libraries and DBI Perl modules.
+    - Debian: (apt-get install libsqlite0 libdbd-sqlite-perl)
+
+other distros might need to build from sources.
+
+You may use either DBD::SQLite or DBD::SQLite2
+
+SQLite sources:
+
+    http://www.hwaci.com/sw/sqlite/
+
+DBD::SQLite sources:
+
+    http://search.cpan.org/author/MSERGEANT/DBD-SQLite/
+
+You will also need the normal Perl DBD stuff which should be included in your
+Perl distribution.
+
+# vim:ts=4:sw=4:expandtab:tw=80

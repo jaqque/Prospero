@@ -1,0 +1,455 @@
+=pod
+
+=head1 NAME
+
+infobot.config - Main infobot configuration file
+
+=head1 SYNOPSIS
+
+B<set> E<lt>B<variable>E<gt> E<lt>B<value>E<gt>
+
+=head1 DESCRIPTION
+
+This file is the main configuration file for your bot. Empty lines are ignored
+as usual, and any lines which start with a C<#> are treated as comments.
+
+When you first setup your infobot, you should start by copying the sample file,
+found in S<F</path/to/bot/files/sample/infobot.config>> to the
+S<F</path/to/bot/files>> directory. Once this is done, start up your favorite
+editor and carefully go over the settings one by one, before you attempt to
+start your bot.
+
+Fields that are commented out by default, are typically not needed. Use your
+own judgement.
+
+=head1 OPTIONS
+
+Below is a list of the variables that infobot currently recognises, along with
+a short blurb about each.
+
+=head2 Basic IRC info
+
+=over
+
+=item B<set ircNick> E<lt>B<nick>E<gt>
+
+The name that you want your infobot to appear as on B<IRC>.
+
+=item B<set ircUser> E<lt>B<user>E<gt>
+
+The ident reply that you want your infobot to send if you don't already have a
+running ident daemon on your system.
+
+=item B<set ircName> E<lt>B<description of your bot>E<gt>
+
+This sets the name that appears as "Real Name" when someone does a C</WHOIS> on
+your infobot's nick on B<IRC>.
+
+=item B<set ircPasswd> E<lt>B<your_password>E<gt>
+
+If this variable is set, then the server will send it when connecting to the
+B<IRC> server. Most networks only use this for server administrators to gain
+their operator status. However, B<Freenode> (B<http://www.freenode.net/>) uses
+this server password to identify you automatically to nickserv on connect.
+
+=item B<set ircUMode> E<lt>B<+>|B<->E<gt>E<lt>B<modes>E<gt>[E<lt>B<+>|B<->E<gt>E<lt>B<modes>E<gt>...]
+
+This is a list of user modes that the infobot should attempt to set after it
+has established a connection with the B<IRC> server.
+
+=item B<set ircHost> E<lt>B<ip address>|B<dns name>E<gt>
+
+Typically this setting isn't used. However, if you have a muti-homed server
+(multiple network cards), and you don't want your bot to use the default route
+out of the network, you can set this to the B<IP Address> or B<hostname> of the
+interface that you want it to use when connecting to B<IRC>.
+
+=item B<set owner> E<lt>B<owners_user_name>E<gt>
+
+Set this to the nick that matches the name of the account that you set in the
+F<infobot.users> file for yourself.
+
+I<FIXME: Does this actually do anything yet?>
+
+=item B<set nickServ_pass> E<lt>B<password>E<gt>
+
+If the server your bot is connecting to supports nick services, you can set the
+password here that will be used to identify itself with.
+
+=item B<set quitMsg> E<lt>B<quit message>E<gt>
+
+When your bot intentionally disconnects from a server, it will display the
+following quit reason to users who see it quit.
+
+I<Note: some servers can optionally, or forcefully, hide this message>
+
+=item B<set tempDir> E<lt>B</path/to/directory>E<gt>
+
+This sets a path to a temporary directory which infobot can use. Most people
+find this best set to F</tmp>.
+
+=back
+
+=head2 Factoid database configuration
+
+=over
+
+=item B<set DBType> E<lt>B<none>|B<mysql>|B<SQLite>|B<SQLite2>|B<pgsql>E<gt>
+
+If you have enabled factoid support, this setting will control the backend
+database that you use to save factoids and other various information.
+
+If you choose SQLite or SQLite2, you will need to ensure that you have
+installed S<libdbd-sqlite-perl> on your system. Also, SQLite will support a
+version 2 or 3 of the library, where as SQLite2 will force the bot to use
+version 2 specifically.
+
+I<FIXME: Does C<none> type actually work without breaking non factoid related>
+I<db saves?>
+
+=item B<set DBName> E<lt>B<DB name>|B</path/to/store/sqlite>E<gt>
+
+If you have database support enabled, this setting will tell the bot what
+database it should use. If you are using SQLite, it should be set to the
+directory where you want to store the database files on disk.
+
+I<FIXME: Is this a file or a directory?>
+
+=item B<set SQLHost> E<lt>B<hostname>|B<IP address>E<gt>
+
+If you are using a database, this specifies the name of the host that the
+database resides on. If you are using SQLite, this value should be commented
+out.
+
+I<FIXME: If using SQLite, does it need to be commented out, or is it ignored?>
+
+=item B<set SQLUser> E<lt>B<username>E<gt>
+
+If you are using a database, this specifies the user name that the bot should
+use to login with. If you are using SQLite, this value should be commented out.
+
+I<FIXME: If using SQLite, does it need to be commented out, or is it ignored?>
+
+=item B<set SQLPass> E<lt>B<password>E<gt>
+
+If you are using a database, this specifies the password that the bot should
+use to login with. If you are using SQLite, this value should be commented out.
+
+I<FIXME: If using SQLite, does it need to be commented out, or is it ignored?>
+
+=item B<set SQLDebug> E<lt>B<filename>E<gt>
+
+If you are using a database, this specifies the filename that you wish to log
+all B<SQL> commands to. On some platforms, you may be able to use a "-" to
+specify B<stdout> so that it displays on the console instead.
+
+=back
+
+=head2 Logfile configuration
+
+These settings control the various aspects of how the bot logs the console.
+
+=over
+
+=item B<set logfile> E<lt>B<directory>|B<filename>E<gt>
+
+This setting tells the bot where to log everything you see on the console
+screen.  You can optionally use a variable such as B<$ircUser> in the filename
+if you want to name the logs after the name of the bot. If this setting is left
+out, logging is disabled.
+
+I<FIXME: What if it is a directory?>
+
+=item B<set logType> E<lt>B<DAILY>|B<DEFAULTE><gt>
+
+If you have enabled logging, this setting will determine if the log file should
+be rotated on a daily basis, or use on continuous file.
+
+I<FIXME: What happens if it is unset?>
+
+=item B<set maxLogSize> E<lt>B<max size in bytes>E<gt>
+
+If you have enabled logging, this setting will determine the maximum size of
+the log file. The size should be specified in bytes. A reasonable size is
+10000000 (10MB).
+
+I<FIXME: What happens when the maximum is reached? What if its unset?>
+
+=back
+
+=head2 Factoid-related configuration
+
+These settings govern how factoids are managed.
+
+=over
+
+=item B<set factoids> E<lt>B<true>|B<false>E<gt>
+
+This is a boolean value that decides if you want factoid support enabled for
+your bot. Typically you want you leave this enabled.
+
+=item B<set factoidDeleteDelay> E<lt>B<number of days>E<gt>
+
+When you delete a factoid, it isn't immediately removed. Instead, the factoid
+key is renamed with a "#DEL#" appended to it. This allows you to undelete
+factoids that were erased by accident.
+
+If you have factoid support enabled, this setting will determine how long
+deleted factoids stay in the database before they are automatically purged. A
+value of B<0> will disable auto purging of deleted factoids.
+
+=item B<set maxKeySize> E<lt>B<integer>E<gt>
+
+If you have factoid support enabled, this value determines the maximum length
+of the factoid key.
+
+=item B<set maxDataSize> E<lt>B<number of bytes>E<gt>
+
+If you have factoid support enabled, this value determines the maximum length
+of the value for a factoid key.
+
+=item B<set learn> E<lt>B<ADDRESSED>|B<HUNGRY>E<gt>
+
+If you have factoid support enabled, this value determines how the bot reacts
+to public chatter.
+
+In B<ADDRESSED> mode, the bot will only learn the factoid if you address it
+specifically by name S<(eg: Botname: ...)>, or by B<!trigger>. This is the
+recommended mode.
+
+In B<HUNGRY> mode, the bot will take assuming everything said is an attempt to
+talk with the bot. This includes things like welcoming you when you say thanks
+and other various spam. This will also tend to catch useless garbage in your
+database since the word "is" will be recognised as an attempt to teach it a new
+factoid. Use at your own risk. ;)
+
+=item B<set acceptUrl> E<lt>B<REQUIRE>|B<OPTIONAL>|B<REJECT>E<gt>
+
+The bot has the ability to recognize B<URL>'s. This setting will control what
+it accepts as a B<URL>.
+
+In B<REQUIRE> mode, the bot will need the protocol to be specifically mentioned
+for it to be considered (eg: file://, http://).
+
+In B<OPTIONAL> mode, the bot will accept just about anything.
+
+In B<REJECT> mode, the bot will not accept any B<URL>'s. This makes it easy to
+run with different nicks and styles.
+
+I<FIXME: What is the point of REJECT?>
+
+=item B<set profanityCheck> E<lt>B<true>|B<false>E<gt>
+
+This determines if the bot should accept or reject factoids which contain foul
+language.
+
+=item B<set allowTelling> E<lt>B<true>|B<false>E<gt>
+
+The the has the ability for people to ask the bot to tell someone else about
+one of its factoids. This setting controls if that is allowed or not.
+
+=item B<set friendlyBots> [B<botname> [B<bot2> ... B<botN>]]
+
+An infobot has a built in protocol which allows them to communicate with each
+other. If a user asks your bot for a factoid that doesnt exist, the bot will
+attempt to ask each bot in this space seperated list for it.  If one of the
+bots has an answer, your bot will save it to its database, and tell it to the
+person who requested it.
+
+I<NOTE: Many bots are set to require that your bot be in a channel with it>
+I<before they will allow your bot to talk to it.>
+
+=back
+
+=head2 Factoid related and unrelated features, mainly Extras.
+
+These settings are basically stuff that doesn't fit anywhere else.
+
+=over
+
+=item B<set addressing> E<lt>B<REQUIRE>|B<OPTIONAL>E<gt>
+
+This setting controls how your bot responds (not related to learning factoids)
+to people saying stuff in a channel. With B<REQUIRE>, the bot will only say
+something if it is addressed (via nick or trigger). With B<OPTIONAL>, the bot
+will respong (not learn) irrelevent of addressing.
+
+=item B<set talkMethod> E<lt>B<PRIVATE>|B<DEFAULT>E<gt>
+
+This setting controls how the bot should send messages. With B<PRIVATE>, the
+bot will reply to private messages only, rejecting public messags. With
+B<DEFAULT>, the bot will reply to publid and private queries.
+
+=item B<set minLengthBeforePrivate> E<lt>B<integer>E<gt>
+
+This will determine how long the output string of a reply should be before it
+is changed from public response, to a private message. A value of B<192> is
+recommended. You can disable this feature by commenting out the setting.
+
+=item B<set disallowOutsiders> E<lt>B<true>|B<false>E<gt>
+
+This setting, if enabled, will allow people outside and channels that your bot
+is on to use the bot.
+
+=item B<set ignoreAutoExpire> E<lt>B<minutes>E<gt>
+
+This setting controls the amount of time for auto-ignore (flooding) to expire.
+
+=item B<set ignoreTempExpire> E<lt>B<minutes>E<gt>
+
+This controls the amount of time for forced-online ignore to expire in minutes.
+
+=back
+
+=head2 Internal (simple) bot commands
+
+=over
+
+=item B<set forking> E<lt>B<true>|B<false>E<gt>
+
+The controls forking in the bot. This should be disabled for non-nix operating
+systems, or to reduce memory usage. Disabling should also make the bot work on
+Win32 and MacOS.
+
+=item B<set backlog> E<lt>B<number lines>E<gt>
+
+This controls the maximum number of lines to use for a backlog buffer on the
+console.  Fairly handy for looking back a page or two to see what the bot is
+doing. Typically not needed when used with screen sessions.
+
+=back
+
+=head2 Extra features
+
+=over
+
+=item B<set httpProxy> E<lt>B<http://HOSTNAME:PORT/>E<gt>
+
+This proxy is used for any module in the bot which requires LWP + http proxy.
+
+=item B<set countdown> E<lt>B<true>|B<false>E<gt>
+
+This determines if the bot should use the countdown file to remember and
+announce special dates.
+
+=item B<set Debian> E<lt>B<true>|B<false>E<gt>
+
+This setting controls the Debian module for file and package searching. If it
+is enabled, users of the bot will be allowed to search, otherwise it will be
+completly disabled.
+
+=item B<set freshmeat> E<lt>B<true>|B<false>E<gt>
+
+The bot has the ability to search B<freshmeat.net> for packages. This setting
+controls if that is enabled or not.
+
+=item B<set freshmeatRefreshInterval> E<lt>B<hours>E<gt>
+
+If the B<freshmeat.net> search is enabled, this setting will control how often
+the bot should update the index in hours.
+
+=item B<set freshmeatForFactoid> E<lt>B<true>|B<false>E<gt>
+
+If B<freshmeat.net> is enabled as well as this setting, the bot will search
+freshmeat for factoids which do not exist.
+
+=item B<set Uptime> E<lt>B<true>|B<false>E<gt>
+
+This controls if the bot should store uptime records or not.
+
+=item B<set rssFeedTime E<lt>minutesE<gt>>
+
+Should you decide to use the RSS Feed module, this setting controls how often
+the feeds for all channels will be polled.
+
+=back
+
+=head2 Miscellaneous configuration options
+
+=over
+
+=item B<set VERBOSITY> E<lt>B<0>|B<1>|B<2>E<gt>
+
+Controls how verbose the console output should be. A setting of B<0> will
+disable verbosity. A setting of B<1> will give standard information. And a
+setting of B<2> will give you extra information.
+
+=item B<set WARN> E<lt>B<true>|B<false>E<gt>
+
+This setting controls if the bot console will display warning messages or not.
+
+=item B<set DEBUG> E<lt>B<true>|B<false>E<gt>
+
+If the bot console should display debugging messages or not.
+
+=item B<set WIP> E<lt>B<true>|B<false>E<gt>
+
+If the bot should activate work in progress (experimental) features.
+
+I<FIXME: Likely to be removed.>
+
+=item B<set useStrict> E<lt>B<true>|B<false>E<gt>
+
+This setting controls if the bot should "use strict" in its code. Handy to have
+enabled for catching problems in the code. Best leave this enabled.
+
+=item B<set Interface> E<lt>B<IRC>|B<CLI>E<gt>
+
+This controls the interface that the bot should use. Most people will want to
+use B<IRC> which connects the bot to an IRC server. Optionally, you can setup a
+standalone bot by setting this to B<CLI>. In B<CLI> mode, the bot will not
+connect to a server, but instead allow you to use it on the console as if it
+were being used in a private message on IRC.
+
+=item B<set topicAuthor> E<lt>B<true>|B<false>E<gt>
+
+This setting controls how the bot adds topic's in a channel. If enabled, topics
+managed with !topic add foo, will show the nick of the person who set it with
+the format: "foobar (nick)" in ()'s. If it is disabled, only the topic will be
+added, not the creator.
+
+=back
+
+=head2 Debugging
+
+=over
+
+=item B<set DumpVars> E<lt>B<true>|B<false>E<gt>
+
+If the bot should dump its variables or not.
+
+=item B<set dumpvarsAtExit> E<lt>B<true>|B<false>E<gt>
+
+If the bot should dump its variables when it shuts down.
+
+=item B<set dumpvarsLogFile> E<lt>B<filename.log>E<gt>
+
+If the dumped variables should go to a sepcific log file.
+
+=item B<set DumpVars2> E<lt>B<true>|B<false>E<gt>
+
+If the bot should dump extra variables.
+
+=item B<set symdumpLogFile> E<lt>B<filename.log>E<gt>
+
+The file the extra variables should be dumped to.
+
+=back
+
+=head1 BUGS
+
+There is a lot of upper/lower case issues with some of the variables. It is not
+know if and or all of them are case sensitive. Also, Many of the original
+settings ask for "[0|1]", and depending on how the code is written, a B<TRUE>
+or B<FALSE> may not work for certain variables. This is considered a B<BUG>,
+and should be reported as such.
+
+=head1 CONTACT
+
+If you need to contact us to submit patches or whatever, please try out mailing
+list available at S<B<infobot-devel@lists.sourceforge.net>>. If you would
+rather a more realtime conversation with us, we can be found in the B<#infobot>
+channel on the B<Freenode> network (B<irc://irc.freenode.net>).
+
+=cut
+

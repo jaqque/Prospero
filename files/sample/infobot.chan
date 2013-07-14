@@ -1,0 +1,108 @@
+#v1.5.0: infobot
+
+#botpark
+    -OnJoin
+    +RootWarn
+    +autojoin
+
+#debian-bots
+    +News
+    -OnJoin
+    +RootWarn
+    +chanlimitcheck
+    chanlimitcheckInterval 10
+    chanlimitcheckPlus 10
+    factoidDeleteDelay 7
+    ircTextCounters heh hah :) ? hi lol
+    +joinfloodCheck
+    limitcheckInterval 10
+    limitcheckPlus 10
+    newsDefaultExpire 7
+    +newsKeepRead
+    +newsNotifyAll
+    rootWarnMode aggressive
+
+#infobot
+    -OnJoin
+    +RootWarn
+    +autojoin
+
+_default
+    +hex2ip
+    +News
+    +BZFlag
+    +chanServCheck
+    +Debian
+    +DebianExtra
+    +Dict
+    +Exchange
+    +Factoids
+    +HTTPDtype
+    +Kernel
+    +Math
+    +OnJoin
+    +Plug
+    +Quote
+    +Rss
+    +Search
+    +Topic
+    +Units
+    +UserInfo
+    +W3Search
+    +Weather
+    +Zippy
+    addressCharacter ~
+    +allowConv
+    +allowTelling
+    +babelfish
+    +botmail
+    +case
+    +cookie
+    +countdown
+    debianRefreshInterval 7
+    +dice
+    +dns
+    +factoidArguments
+    factoidSearch $chan _default
+    floodMessages 10:30
+    floodRepeat 2:10
+    +freshmeat
+    freshmeatRefreshInterval 24
+    +insult
+    +karma
+    +lart
+    +limitcheck
+    +log
+    maxListReplyCount 15
+    maxListReplyLength 400
+    +md5
+    minVolunteerLength 2
+    maxVolunteerLength 512
+    +nickometer
+    +pager
+    +piglatin
+    randomFactoidInterval 60
+    randomQuoteInterval 60
+    +reverse
+    +scramble
+    +sed
+    +seen
+    seenFlushInterval 60
+    seenMaxDays 90
+    +seenStats
+    +seenStoreAll
+    sendNoticeLimitBytes 1000
+    sendNoticeLimitLines 3
+    sendPrivateLimitBytes 1000
+    sendPrivateLimitLines 3
+    sendPublicLimitBytes 1000
+    sendPublicLimitLines 3
+    +slashdot
+    +spell
+    +tell
+    +upsidedown
+    +verstats
+    +wikipedia
+    +wtf
+    +zfi
+    +zsi

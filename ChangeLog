@@ -1,0 +1,60 @@
+1.5.3
+=====
+
+* New maxVolunteerLength to govern max size of non addressed replies
+
+* Cleaned up some of the regex code for what the bot considers a question
+
+* Fixed an obscure and undocumented variable that was disabling "query?"
+questions in non addressed mode
+
+* Fixed bug in babelfish module due to site/html changes
+
+* Added chanset and help for verstats to allow disabling of command to prevent abuse
+
+* Fixed verstats to warn the channel about who involked the command and bug that
+was causing the output to go to random channels due to loss of variable scope
+
+* Added infobot client to verstats and cleaned up a few other client regex
+
+* Fixed talkok bug with 'how are you' statement
+
+1.5.2
+=====
+
+* Correction to factoid updates to treat appending as a modification
+
+* Code formatting cleanups
+
+* Removed unmaintained patches directory
+
+* Changed +chan to chanadd
+
+* Changed -chan to chandel
+
+* Changed +ban to banadd
+
+* Changed -ban to bandel
+
+* Changed +host to hostadd
+
+* Changed -host to hostdel
+
+* Changed adduser to useradd
+
+* Changed deluser to userdel
+
+1.5.1
+=====
+
+* Fixed bug in factoid modification code that prevented matching against
+created_by properly
+
+* New +M flag to allow modifying factoids created by same nick
+
+1.5.0
+=====
+
+* Rebranding from blootbot
+
+# vim:ts=4:sw=4:expandtab:tw=80

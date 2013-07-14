@@ -1,0 +1,35 @@
+# $Id: THANKS 1839 2008-08-01 19:09:26Z djmcgrath $
+
+                                  ------------
+                                  -- THANKS --
+                                  ------------
+
+Over time, many people have helped us out with the project. Some have helped on
+IRC with suggestions, ideas, bug fixes. Some still with bug reports, complaints
+and feedback. Below is a list of those people that have contributed in one way
+other another, or people who we feel we owe thanks to in one way or another.
+
+If we missed you from this list, drop us a line and we will be sure to give
+credit where it is due.
+
+
+#perl@freenode.net
+------------------
+Somni
+apeiron
+sili
+f00li5h
+Caelum
+anno-
+mst
+dngor
+PerlJam
+Limbic_Region
+mmap__
+jagerman
+
+#infobot@freenode.net
+---------------------
+quin - many thanks for ctcp version bug help
+
+# vim:ts=4:sw=4:expandtab:tw=80

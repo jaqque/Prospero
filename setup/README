@@ -1,0 +1,24 @@
+Welcome,
+
+This directory has changed slightly. The new format allows for
+each type of database to have its own schema. The following
+directories are included:
+
+	mysql/		-- Schema for the popular MySQL
+	sqlite/		-- Schema for v2 or v3 of SQLite
+	sqlite2/	-- Schema for specifically v2 of SQLite
+	pgsql/		-- Schema for PostgreSQL
+
+Also, the included setup.pl has been modified to work with
+all of the above types of databases. (FIXME: actually, only
+MySQL until I actually change it)
+
+To automate the setup of your database and user, type:
+
+	cd ~/infobotdir
+	./setup/setup.pl
+
+(NOTE: The setup will ask for an account capable of administrating
+the database server!)
+
+# vim:ts=4:sw=4:expandtab:tw=80

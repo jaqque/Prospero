@@ -1,0 +1,24 @@
+Known bugs that should be dealt with soon as possible:
+
+    * Multiple nick per server is in need of some testing and make be
+    incomplete or buggy in some parts of the bot
+
+    * Older CMD: foo's cannot be used or removed. Must be removed manually from
+    the database with SQL
+
+    * !+topic list gives and incorrect error Failed. "You (#botpark) are not in
+    #botpark, hey?"
+
+    * News is currently stored in a file rather than the SQL table created for it
+
+    * !help has size issues. Add's extra lines with only 1 or 2 help commands
+    instead of one maximum size IRC msg
+
+    * Bot can be flooded offline with a crash if !+factstats help and /msg nick
+    factstats help, are used at the same time
+
+    * Wildcards in --HOSTS section has problems.
+    eg: nick!*@foo.*.someisp.com doesnt recognize for removing factoids but:
+    nick!foobar@*.someisp.com does
+
+# vim:ts=4:sw=4:expandtab:tw=80

@@ -1,0 +1,25 @@
+#v1.5.0: infobot -- written Mon Feb 28 23:46:48 2005
+# Please edit to your needs.
+# "local" is used for CLI mode
+# Passwords can be generated with mkpasswd in linux
+
+_default
+--FLAGS		amrt
+--HOSTS		*!*@*
+
+local
+--FLAGS		Aemnorst
+--HOSTS		local!local@local
+--PASS		xxfxfIfoJHdYg
+
+timriker
+--FLAGS		Aemnorst
+--HOSTS		*!~timr@TimRiker.active.supporter.pdpc
+--PASS		xxfxfIfoJHdYg
+
+xk
+--FLAGS		emnorst
+--HOSTS		*!xk@example.com
+--HOSTS		*!xk@superbox.home.org
+--PASS		5K/rmJPzwxJhU
+
